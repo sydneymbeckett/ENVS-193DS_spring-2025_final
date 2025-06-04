@@ -1,0 +1,27 @@
+---
+title: "finalwork"
+format: html
+---
+
+https://github.com/sydneymbeckett/ENVS-193DS_spring-2025_final.git 
+
+```{r}
+library(tidyverse)
+sst <- read_csv("SST_update2023.csv")
+```
+
+## Problem 1.
+
+**a)**
+look in slides to see what tests we have talk about
+In part 1 they used a 
+In part 2 they used a one-way ANOVA.
+
+**b)**
+Given 
+
+**c)**
+
+## Problem 2.
+
+
