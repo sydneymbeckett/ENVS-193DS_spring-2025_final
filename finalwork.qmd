@@ -8,6 +8,7 @@ https://github.com/sydneymbeckett/ENVS-193DS_spring-2025_final.git
 
 ```{r}
 library(tidyverse)
+library(janitor)
 sst <- read_csv("data/SST_update2023.csv")
 ```
 
@@ -24,5 +25,42 @@ Given
 **c)**
 
 ## Problem 2.
+
+**a)**
+```{r}
+sst_clean <- sst |> #use the sst data frame
+  clean_names() |> #clean up the column names
+  mutate(
+    date = ymd(date), #making sure the date is read as a date
+    year = year(date), #making the year a category
+    month = month(date),#making the month category
+    month_name = case_match(
+      month,
+      1 ~ "Jan",
+      2 ~ "Feb",
+      3 ~ "Mar",
+      4 ~ "Apr",
+      5 ~ "May",
+      6 ~ "Jun",
+      7 ~ "Jul",
+      8 ~ "Aug",
+      9 ~ "Sep",
+      10 ~ "Oct",
+      11 ~ "Nov",
+      12 ~ "Dec"
+    ),
+    month_name = as_factor(month.name),
+    month_name = fct_relevel(month_name, month.abb)
+    ) |> 
+  group_by(year, month) |> #grouping by year and month
+  summarize(mean_monthly_sst = mean(temp, na.rm = TRUE), 
+    .groups = "drop"                # ungroup after summarize
+  )
+  
+  
+
+
+
+```
 
 
