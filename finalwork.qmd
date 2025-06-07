@@ -21,7 +21,7 @@ sst <- read_csv("data/SST_update2023.csv")
 
 **a)**
 look in slides to see what tests we have talk about
-In part 1 they used a 
+In part 1 they likely used a simple linear regression. This is because they 
 In part 2 they used a one-way ANOVA.
 
 **b)**
