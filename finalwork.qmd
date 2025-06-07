@@ -6,9 +6,14 @@ format: html
 
 https://github.com/sydneymbeckett/ENVS-193DS_spring-2025_final.git 
 
-```{r}
-library(tidyverse)
-library(janitor)
+
+```{r message= FALSE, warning=FALSE}
+library(tidyverse) # general use
+library(here) # file organization
+library(gt) # creating summary tables
+library(flextable) # creating summary tables
+library(janitor) # cleaning data frames
+library(lubridate) 
 sst <- read_csv("data/SST_update2023.csv")
 ```
 
@@ -30,36 +35,23 @@ Given
 ```{r}
 sst_clean <- sst |> #use the sst data frame
   clean_names() |> #clean up the column names
+  mutate(date = ymd(date)) |>  #making sure the date is read as a date
   mutate(
-    date = ymd(date), #making sure the date is read as a date
-    year = year(date), #making the year a category
-    month = month(date),#making the month category
-    month_name = case_match(
-      month,
-      1 ~ "Jan",
-      2 ~ "Feb",
-      3 ~ "Mar",
-      4 ~ "Apr",
-      5 ~ "May",
-      6 ~ "Jun",
-      7 ~ "Jul",
-      8 ~ "Aug",
-      9 ~ "Sep",
-      10 ~ "Oct",
-      11 ~ "Nov",
-      12 ~ "Dec"
-    ),
-    month_name = as_factor(month.name),
-    month_name = fct_relevel(month_name, month.abb)
-    ) |> 
+  year = (year(date)), #making the year a date
+    month = month(date, label = TRUE, abbr = TRUE)) |> #making the month category and using abbreviations 
+  filter(year >= 2018) |>  # only include recent 6 years) 
   group_by(year, month) |> #grouping by year and month
-  summarize(mean_monthly_sst = mean(temp, na.rm = TRUE), 
-    .groups = "drop"                # ungroup after summarize
-  )
-  
-  
+    summarize(
+    mean_monthly_sst = round(mean(temp, na.rm = TRUE), 1), #calculate the mean monthly sst and round out to one decimal place
+    .groups = "drop" # ungroup after summarize
+  ) |> 
+    mutate(year = factor(year), #converting to a factor after filtering
+      month = factor(month, levels = month.abb, ordered = TRUE)) #ensure correct month ordering
 
+sst_clean |> slice_sample(n = 5) #show 5 first rows
 
+str(sst_clean) #show structure
+  
 
 ```
 
