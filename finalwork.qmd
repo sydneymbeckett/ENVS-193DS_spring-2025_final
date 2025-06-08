@@ -21,13 +21,19 @@ sst <- read_csv("data/SST_update2023.csv")
 
 **a)**
 
-In part 1 they likely used a correlation test because they were comparing two continuous variables.
+In part 1 they likely used a Pearsons correlation test because they were comparing two continuous variables to test for presence of correlation.
 In part 2 they likely used a one-way ANOVA because they were comparing one continuous variable "between sources", which is more than 2 groups.
 
 **b)**
-Another test that could be used is 
+Other information that would be helpful would be the sample size which would help reproducibility, statistical power(aka if the sample size is small then the results might not be as powerful) and reliability if there were outliers(small sample size would highly impacted by one outlier). And given they used a one-way ANOVA, another piece of information that would be helpful would be the F-value which represents the ratio of between group variance to within group variance. Essentially a larger F-value means the group means differ more relative to the variation within groups. 
 
 **c)**
+Part 1: 
+The test resulted in a rejection of the null hypothesis which stated that there is no correlation between distance from headwater (km) and annual total nitrogen load (kg year-1). The relationship was evaluated using Pearsons correlation test(r=correlation coefficient, p=0.03, α = significance level, n=sample size).
+
+Part 2: 
+
+We rejected the null hypothesis that there is no difference in average nitrogen load (kg year-1) between sources (urban land, atmospheric deposition, fertilizer, waste water treatment, and grasslands). This was determined using a one-way ANOVA(F= F-statistic, p=0.02, α=significance level, df=degrees of freedom, SS=sum of squares, n=sample size).
 
 ## Problem 2.
 
