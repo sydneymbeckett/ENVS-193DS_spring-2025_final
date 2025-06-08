@@ -7,6 +7,7 @@ format: html
 https://github.com/sydneymbeckett/ENVS-193DS_spring-2025_final.git 
 
 
+
 ```{r message= FALSE, warning=FALSE}
 library(tidyverse) # general use
 library(here) # file organization
@@ -15,6 +16,7 @@ library(flextable) # creating summary tables
 library(janitor) # cleaning data frames
 library(lubridate)
 library(ggplot2)
+library(DHARMa)
 sst <- read_csv("data/SST_update2023.csv")
 nest_boxes <- read_csv("data/occdist.csv")
 ```
