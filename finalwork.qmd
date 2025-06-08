@@ -167,6 +167,25 @@ model3 <- glm(
   family = binomial
 )
 
+```
+
+**f)**
+```{r}
+#model 0 diagnostics
+res0 <- simulateResiduals(model0)
+plot(res0)
+
+#model 1 diagnostics
+res1 <- simulateResiduals(model1)
+plot(res1)
+
+#model 2 diagnostics
+res2 <- simulateResiduals(model2)
+plot(res2)
+
+#model 3 diagnostics
+res3 <- simulateResiduals(model3)
+plot(res3)
 
 ```
 
