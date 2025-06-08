@@ -20,12 +20,12 @@ sst <- read_csv("data/SST_update2023.csv")
 ## Problem 1.
 
 **a)**
-look in slides to see what tests we have talk about
-In part 1 they likely used a simple linear regression. This is because they 
-In part 2 they used a one-way ANOVA.
+
+In part 1 they likely used a correlation test because they were comparing two continuous variables.
+In part 2 they likely used a one-way ANOVA because they were comparing one continuous variable "between sources", which is more than 2 groups.
 
 **b)**
-Given 
+Another test that could be used is 
 
 **c)**
 
