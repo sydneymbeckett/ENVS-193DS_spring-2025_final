@@ -7,7 +7,6 @@ format: html
 https://github.com/sydneymbeckett/ENVS-193DS_spring-2025_final.git 
 
 
-
 ```{r message= FALSE, warning=FALSE}
 library(tidyverse) # general use
 library(here) # file organization
@@ -17,6 +16,7 @@ library(janitor) # cleaning data frames
 library(lubridate)
 library(ggplot2)
 library(DHARMa)
+library(MuMIn)
 sst <- read_csv("data/SST_update2023.csv")
 nest_boxes <- read_csv("data/occdist.csv")
 ```
@@ -141,14 +141,14 @@ nest_boxes_clean <- nest_boxes |>
 ```{r, results='hide', message=FALSE, warning=FALSE}
 # model 0: null model
 model0 <- glm( #using GLM
-  sp ~ 1, # formula 
+  sp ~ 1, # formula, null so using no predictor
   data = nest_boxes_clean, # data frame
   family = binomial 
 )
 
 # model 1: all predictors/saturated
 model1 <- glm(
-  sp ~ season + edge_distance, # formula
+  sp ~ season * edge_distance, # formula using season and edge distance as predictors
   data = nest_boxes_clean, # data frame
   family = binomial
 )
@@ -175,17 +175,37 @@ model3 <- glm(
 res0 <- simulateResiduals(model0)
 plot(res0)
 
+```
+
+```{r}
 #model 1 diagnostics
 res1 <- simulateResiduals(model1)
 plot(res1)
 
+```
+
+```{r}
 #model 2 diagnostics
 res2 <- simulateResiduals(model2)
 plot(res2)
 
+```
+
+```{r}
 #model 3 diagnostics
 res3 <- simulateResiduals(model3)
 plot(res3)
+```
 
+
+**g)**
+The best model as determined by Akaike’s Information Criterion (AIC) is Model 1 with an AICc of 227.0325. 
+```{r model-selection}
+AICc(model1, #using AIC to run model selection
+     model2,
+     model3,
+     model0)|> 
+  # arranging output in descending order of AIC
+  arrange(AICc)
 ```
 
