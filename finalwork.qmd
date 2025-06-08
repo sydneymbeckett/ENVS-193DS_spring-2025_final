@@ -110,4 +110,14 @@ STILL NEED TO FIX THE LEGEND
 ## Problem 3.
 
 **a)**
+The 1s and 0s refer to occupancy of the nest boxes. With the 1 referring to occupancy and 0 referring to no occupancy in the nest box.
+
+**b)**
+The main difference between the species is that the Swift Parrots are a native and threatened species. The Tree Martins are also native but are nest competitors with the Swift Parrots, and then Common Starlings are an invasive species. 
+
+**c)**
+The two seasons compared in the study are 2016 and 2019 which are breeding seasons for the Swift Parrots. They differ because in 2016 the nest boxes had been newly put in, while in 2019 the boxes were established and they could determine how the nest boxes were actually being used and by what species.
+
+**d)**
+
 
