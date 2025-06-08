@@ -83,7 +83,7 @@ sst_plot <- ggplot(data = sst_clean,
   geom_point() +
   # second layer: line
   geom_line() +
-  scale_color_gradient(low = "lightblue", high = "black") +
+  scale_color_gradient(low = "lightblue", high = "black") + #creating a color gradient
   # labels
   labs(x = "Month",
        y = "Mean monthly sea surface temperature(°C)",
@@ -120,4 +120,11 @@ The two seasons compared in the study are 2016 and 2019 which are breeding seaso
 
 **d)**
 
+| Model number | Season | Distance to forest edge | Model Description                           |           
+|:------------:|:------:|:-----------------------:|:-------------------------------------------:|
+| 1            |No      |No                       |no predictors(null model)                    | 
+| 2            |Yes     |Yes                      |all predictors(saturdated model)             | 
+| 3            |Yes     |No                       |Predictor variable is season                 |  
+| 4            |No      |Yes                      |Predictor variable is distance to forest edge|   
+**e)**
 
