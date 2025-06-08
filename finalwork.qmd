@@ -136,7 +136,7 @@ nest_boxes_clean <- nest_boxes |>
 ```
 
 
-```{r}
+```{r, results='hide', message=FALSE, warning=FALSE}
 # model 0: null model
 model0 <- glm( #using GLM
   sp ~ 1, # formula 
