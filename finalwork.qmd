@@ -120,11 +120,51 @@ The two seasons compared in the study are 2016 and 2019 which are breeding seaso
 
 **d)**
 
-| Model number | Season | Distance to forest edge | Model Description                           |           
-|:------------:|:------:|:-----------------------:|:-------------------------------------------:|
-| 1            |No      |No                       |no predictors(null model)                    | 
-| 2            |Yes     |Yes                      |all predictors(saturdated model)             | 
-| 3            |Yes     |No                       |Predictor variable is season                 |  
-| 4            |No      |Yes                      |Predictor variable is distance to forest edge|   
+| Model number | Season | Distance to forest edge | Model Description                             |           
+|:------------:|:------:|:-----------------------:|:---------------------------------------------:|
+| 0            |No      |No                       |no predictors(null model)                      |
+| 1            |Yes     |Yes                      |all predictors(saturdated model)               |
+| 2            |Yes     |No                       |GLM:Predictor variable=season                  |
+| 3            |No      |Yes                      |GLM:Predictor variable=distance to forest edge |   
 **e)**
+
+```{r}
+#cleaning and wrangling the nest_boxes data
+nest_boxes_clean <- nest_boxes |> 
+  clean_names()
+
+```
+
+
+```{r}
+# model 0: null model
+model0 <- glm( #using GLM
+  sp ~ 1, # formula 
+  data = nest_boxes_clean, # data frame
+  family = binomial 
+)
+
+# model 1: all predictors/saturated
+model1 <- glm(
+  sp ~ season + edge_distance, # formula
+  data = nest_boxes_clean, # data frame
+  family = binomial
+)
+
+# model 2: season
+model2 <- glm(
+  sp ~ season,
+  data = nest_boxes_clean, #data frame
+  family = binomial
+)
+
+# model 3: distance to forest edge
+model3 <- glm(
+  sp ~ edge_distance,
+  data = nest_boxes_clean, #data frame
+  family = binomial
+)
+
+
+```
 
