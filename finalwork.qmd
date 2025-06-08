@@ -16,6 +16,7 @@ library(janitor) # cleaning data frames
 library(lubridate)
 library(ggplot2)
 sst <- read_csv("data/SST_update2023.csv")
+nest_boxes <- read_csv("data/occdist.csv")
 ```
 
 ## Problem 1.
@@ -106,5 +107,7 @@ sst_plot
 STILL NEED TO FIX THE LEGEND
 ```
 
-**c)**
+## Problem 3.
+
+**a)**
 
