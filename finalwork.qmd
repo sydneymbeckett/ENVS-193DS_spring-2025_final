@@ -13,7 +13,8 @@ library(here) # file organization
 library(gt) # creating summary tables
 library(flextable) # creating summary tables
 library(janitor) # cleaning data frames
-library(lubridate) 
+library(lubridate)
+library(ggplot2)
 sst <- read_csv("data/SST_update2023.csv")
 ```
 
@@ -61,4 +62,49 @@ str(sst_clean) #show structure
 
 ```
 
+**b)**
+```{r}
+
+sst_clean$year <- as.numeric(as.character(sst_clean$year)) #making sure the year is numeric
+
+sst_clean <- sst_clean |> #making sure that month is in the corrent order
+  mutate(month = factor(month, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec")))
+#creating a gradient color scale 
+year_colors <- scale_color_gradient(low = "lightblue", high = "black")
+               # base layer: ggplot
+sst_plot <- ggplot(data = sst_clean,
+                      # aesthetics: x-axis, y-axis, and color
+                      aes(x = month,
+                          y = mean_monthly_sst,
+                          color = year,
+                          group = year)) +
+  # first layer: points
+  geom_point() +
+  # second layer: line
+  geom_line() +
+  scale_color_gradient(low = "lightblue", high = "black") +
+  # labels
+  labs(x = "Month",
+       y = "Mean monthly sea surface temperature(°C)",
+       color = "Year") +
+  theme_minimal(base_size = 12) +
+  theme(
+    panel.background = element_rect(fill = "white", color = NA), #panel background white
+    plot.background = element_rect(fill = "white", color = NA), #entire plot background white
+    panel.grid.major = element_blank(), #remove major grid lines
+    panel.grid.minor = element_blank(), #remove minor grid lines
+    legend.position = c(0.15, 0.75),  # inside panel
+    legend.background = element_rect(fill = "white", color = NA), #no legend border
+    panel.border = element_rect(color = "grey", fill = NA, linewidth = 0.5), #creating border
+    legend.title = element_text(size = 10),
+    legend.text = element_text(size = 9)
+  )
+
+# display the plot
+sst_plot
+
+STILL NEED TO FIX THE LEGEND
+```
+
+**c)**
 
