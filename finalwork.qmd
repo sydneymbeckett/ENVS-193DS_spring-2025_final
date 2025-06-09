@@ -198,7 +198,7 @@ plot(res3)
 
 
 **g)**
-The best model as determined by Akaike’s Information Criterion (AIC) is Model 1 with an AICc of 227.0325. 
+The best model as determined by Akaike’s Information Criterion (AIC) is Model 1 with an AICc of 227.0325. **FINISH**
 ```{r model-selection}
 AICc(model1, #using AIC to run model selection
      model2,
@@ -206,5 +206,18 @@ AICc(model1, #using AIC to run model selection
      model0)|> 
   # arranging output in descending order of AIC
   arrange(AICc)
+```
+
+**h)**
+```{r}
+range(nest_boxes_clean$edge_distance)
+#figuring out what the range is for edge distance
+```
+
+
+```{r}
+#make predictions using ggpredict for both predictions and their interactions
+mod_preds <- ggpredict(model1, terms = c("edge_distance [0:1100 by=10]", "season"))
+
 ```
 
