@@ -6,7 +6,6 @@ format: html
 
 https://github.com/sydneymbeckett/ENVS-193DS_spring-2025_final.git 
 
-
 ```{r message= FALSE, warning=FALSE}
 library(tidyverse) # general use
 library(here) # file organization
@@ -17,8 +16,8 @@ library(lubridate)
 library(ggplot2)
 library(DHARMa)
 library(MuMIn)
-sst <- read_csv("data/SST_update2023.csv")
-nest_boxes <- read_csv("data/occdist.csv")
+sst <- read_csv("data/SST_update2023.csv") #reading in SST data
+nest_boxes <- read_csv("data/occdist.csv") #reading in nest data
 ```
 
 ## Problem 1.
@@ -75,11 +74,11 @@ sst_clean <- sst_clean |> #making sure that month is in the corrent order
 #creating a gradient color scale 
 year_colors <- scale_color_gradient(low = "lightblue", high = "black")
                # base layer: ggplot
-sst_plot <- ggplot(data = sst_clean,
+sst_plot <- ggplot(data = sst_clean, #using the sst clean data
                       # aesthetics: x-axis, y-axis, and color
-                      aes(x = month,
+                      aes(x = month, 
                           y = mean_monthly_sst,
-                          color = year,
+                          color = year, #color and group by year
                           group = year)) +
   # first layer: points
   geom_point() +
@@ -87,11 +86,11 @@ sst_plot <- ggplot(data = sst_clean,
   geom_line() +
   scale_color_gradient(low = "lightblue", high = "black") + #creating a color gradient
   # labels
-  labs(x = "Month",
-       y = "Mean monthly sea surface temperature(°C)",
+  labs(x = "Month", #x acis title
+       y = "Mean monthly sea surface temperature(°C)", #y axis title
        color = "Year") +
-  theme_minimal(base_size = 12) +
-  theme(
+  theme_minimal(base_size = 12) + #text font size
+  theme( #controlling the other elements of the graph
     panel.background = element_rect(fill = "white", color = NA), #panel background white
     plot.background = element_rect(fill = "white", color = NA), #entire plot background white
     panel.grid.major = element_blank(), #remove major grid lines
@@ -99,8 +98,8 @@ sst_plot <- ggplot(data = sst_clean,
     legend.position = c(0.15, 0.75),  # inside panel
     legend.background = element_rect(fill = "white", color = NA), #no legend border
     panel.border = element_rect(color = "grey", fill = NA, linewidth = 0.5), #creating border
-    legend.title = element_text(size = 10),
-    legend.text = element_text(size = 9)
+    legend.title = element_text(size = 10), #size of title
+    legend.text = element_text(size = 9) #text size of title
   )
 
 # display the plot
@@ -155,14 +154,14 @@ model1 <- glm(
 
 # model 2: season
 model2 <- glm(
-  sp ~ season,
+  sp ~ season, # formula using season as predictor
   data = nest_boxes_clean, #data frame
   family = binomial
 )
 
 # model 3: distance to forest edge
 model3 <- glm(
-  sp ~ edge_distance,
+  sp ~ edge_distance, # formula using edge distance as predictor
   data = nest_boxes_clean, #data frame
   family = binomial
 )
@@ -171,7 +170,7 @@ model3 <- glm(
 
 **f)**
 ```{r}
-#model 0 diagnostics
+#model 0 diagnostics: 
 res0 <- simulateResiduals(model0)
 plot(res0)
 
