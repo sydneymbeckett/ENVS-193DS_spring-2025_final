@@ -94,15 +94,16 @@ sst_plot <- ggplot(data = sst_clean, #using the sst clean data
        color = "Year") +
   theme_minimal(base_size = 12) + #text font size
   theme( #controlling the other elements of the graph
-    panel.background = element_rect(fill = "white", color = NA), #panel background white
-    plot.background = element_rect(fill = "white", color = NA), #entire plot background white
-    panel.grid.major = element_blank(), #remove major grid lines
-    panel.grid.minor = element_blank(), #remove minor grid lines
-    legend.position = c(0.15, 0.75),  # inside panel
+    panel.background = element_blank(), #panel background white
+    plot.background = element_blank(), #entire plot background white
+    axis.line = element_blank(), #removing x and y axis lines
+    axis.ticks = element_blank(), #remove all axis ticks
+    
+    legend.position = c(0.15, 0.75),  # move legend to top left
     legend.background = element_rect(fill = "white", color = NA), #no legend border
     panel.border = element_rect(color = "grey", fill = NA, linewidth = 0.5), #creating border
-    legend.title = element_text(size = 10), #size of title
-    legend.text = element_text(size = 9) #text size of title
+    panel.grid.major = element_blank(), #removing major grid lines
+    panel.grid.minor = element_blank() #removing minor grid lines
   )
 
 # display the plot
@@ -124,10 +125,10 @@ The two seasons compared in the study are 2016 and 2019 which are breeding seaso
 
 **d)**
 
-| Model number | Season | Distance to forest edge | Model Description                             |           
+| Model number | Season | Distance to forest edge | Model Description                             |       
 |:------------:|:------:|:-----------------------:|:---------------------------------------------:|
 | 0            |No      |No                       |no predictors(null model)                      |
-| 1            |Yes     |Yes                      |all predictors(saturdated model)               |
+| 1            |Yes     |Yes                      |all predictors(saturated model)               |
 | 2            |Yes     |No                       |GLM:Predictor variable=season                  |
 | 3            |No      |Yes                      |GLM:Predictor variable=distance to forest edge |   
 **e)**
@@ -201,7 +202,8 @@ plot(res3)
 
 
 **g)**
-The best model as determined by Akaike’s Information Criterion (AIC) is Model 1 with an AICc of 227.0325. **FINISH**
+The best model, as determined by Akaike’s Information Criterion (AIC = 227), included season and edge distance as predictors of the binary response variable indicating whether a Swift Parrot occupied a nest box.
+
 ```{r model-selection}
 AICc(model1, #using AIC to run model selection
      model2,
@@ -222,16 +224,16 @@ range(nest_boxes_clean$edge_distance)
 #make predictions using ggpredict for both predictions and their interactions
 mod_preds <- ggpredict(model1, terms = c("edge_distance [0:1100 by=10]", "season"))
 
-ggplot(nest_boxes_clean, 
-       aes(x = edge_distance,
-           y = sp )) +
-  geom_point(size = 2.5,
-             alpha = 0.4,
-             color = "#1b9e77") +
-  geom_ribbon(data = mod_preds,
-              aes(x = x,
-              ymin = conf.low,
-              ymax = conf.high,
+ggplot(nest_boxes_clean, #use nest boxes clean data
+       aes(x = edge_distance, #x acis is edge distance
+           y = sp )) + #y axis is sp occupancy
+  geom_point(size = 2.5, #use geom point to show the data points
+             alpha = 0.4, #
+             color = "#1b9e77") + #change color of raw points
+  geom_ribbon(data = mod_preds, #use the module data
+              aes(x = x, 
+              ymin = conf.low, #confidence interval
+              ymax = conf.high, #confidence interval
               y = predicted,
               fill = group),
               inherit.aes = FALSE, #prediction line
@@ -240,10 +242,21 @@ geom_line(data = mod_preds,
           aes(x = x,
               y = predicted,
               color = group)) +
-  scale_y_continuous(limits = c(0,1),
-                     breaks = c(0,1))
-  
+  scale_y_continuous(name = "Swift Parrot Nest Box Occupancy", #y axis label
+    limits = c(0,1), breaks = c(0,1)) +
+  scale_x_continuous(name = "Distance from Forest Edge") + #x axis label
+  scale_fill_manual(values = c("2016" = "#D55E00", "2019" = "#0072B2")) + #manually changing fill color
+scale_color_manual(values = c("2016" = "#D55E00", "2019" = "#0072B2"))+ #manually changing line color
+theme(
+  panel.grid = element_blank(), #remove all grid lines
+  axis.title = element_text(size = 12), #clearer axis labels
+  legend.title = element_blank(), #cleaner legend
+  legend.position = "right" #legend on the right
+)
         
 
 ```
+
+**i)**
+
 
