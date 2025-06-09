@@ -264,7 +264,8 @@ Data: https://doi.org/10.5061/dryad.83bk3j9sb
 
 **j)**
 ```{r}
-ggpredict(model1, 
-          terms = )
+predictions <- ggpredict(model1, #the predictions function saves the output for later use
+          terms = c("edge_distance [0,900]", "season")) 
+print(predictions)
 ```
 
