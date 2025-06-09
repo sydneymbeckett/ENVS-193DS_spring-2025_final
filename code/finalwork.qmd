@@ -244,7 +244,7 @@ geom_line(data = mod_preds,
               color = group)) +
   scale_y_continuous(name = "Swift Parrot Nest Box Occupancy", #y axis label
     limits = c(0,1), breaks = c(0,1)) +
-  scale_x_continuous(name = "Distance from Forest Edge") + #x axis label
+  scale_x_continuous(name = "Distance from Forest Edge(meters)") + #x axis label
   scale_fill_manual(values = c("2016" = "#D55E00", "2019" = "#0072B2")) + #manually changing fill color
 scale_color_manual(values = c("2016" = "#D55E00", "2019" = "#0072B2"))+ #manually changing line color
 theme(
@@ -268,4 +268,13 @@ predictions <- ggpredict(model1, #the predictions function saves the output for 
           terms = c("edge_distance [0,900]", "season")) 
 print(predictions)
 ```
+
+**k)**
+In 2016, the predicted probability of Swift Parrot nest box occupancy at the forest edge(0m) was 0.54((95% CI [0.36, 0.72])), whereas it dropped significantly to 0.09 (95% CI [0.04, 0.22]) at 900 m from the edge. In 2019 the occupancy was overall lower, with a probability of 0.24 (95% CI [0.13, 0.42]) at the edge and the same low probability of 0.09 (95% CI [0.03, 0.23]) at 900 m. As shown in Figure 1, Swift Parrots were more likely to occupy nest boxes closer to the forest edge, especially when they were first implemented in 2016, showing a strong negative relationship between edge distance and occupancy. This trend may be explained by the competition of other species like the Common Starlings and Tree Martins which increased over time and pushed out the Swift Parrots.
+
+This trend may reflect the species’ preference for habitat features near edges, such as greater food availability or nesting conditions, as well as avoidance of competition deeper in the forest. Interestingly, Tree Martins, another cavity-nesting species in the system, exhibited the opposite pattern by showing higher occupancy farther from the forest edge, indicating spatial niche partitioning. Such differences in edge association among species likely shape their competitive interactions and habitat use in the landscape.
+
+add in this information??
+
+
 
