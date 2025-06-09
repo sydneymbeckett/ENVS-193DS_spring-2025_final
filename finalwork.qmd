@@ -6,6 +6,8 @@ format: html
 
 https://github.com/sydneymbeckett/ENVS-193DS_spring-2025_final.git 
 
+
+
 ```{r message= FALSE, warning=FALSE}
 library(tidyverse) # general use
 library(here) # file organization
@@ -16,6 +18,7 @@ library(lubridate)
 library(ggplot2)
 library(DHARMa)
 library(MuMIn)
+library(ggeffects)
 sst <- read_csv("data/SST_update2023.csv") #reading in SST data
 nest_boxes <- read_csv("data/occdist.csv") #reading in nest data
 ```
@@ -218,6 +221,29 @@ range(nest_boxes_clean$edge_distance)
 ```{r}
 #make predictions using ggpredict for both predictions and their interactions
 mod_preds <- ggpredict(model1, terms = c("edge_distance [0:1100 by=10]", "season"))
+
+ggplot(nest_boxes_clean, 
+       aes(x = edge_distance,
+           y = sp )) +
+  geom_point(size = 2.5,
+             alpha = 0.4,
+             color = "#1b9e77") +
+  geom_ribbon(data = mod_preds,
+              aes(x = x,
+              ymin = conf.low,
+              ymax = conf.high,
+              y = predicted,
+              fill = group),
+              inherit.aes = FALSE, #prediction line
+              alpha = 0.3) +
+geom_line(data = mod_preds,
+          aes(x = x,
+              y = predicted,
+              color = group)) +
+  scale_y_continuous(limits = c(0,1),
+                     breaks = c(0,1))
+  
+        
 
 ```
 
