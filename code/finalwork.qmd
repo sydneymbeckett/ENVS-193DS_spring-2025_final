@@ -275,16 +275,16 @@ In 2016, the predicted probability of Swift Parrot nest box occupancy at the for
 ## Problem 4. 
 
 **a)**
-How are the visualizations different from each other in the way you have represented your data?
-In my HW2 I represented my personal data using a boxplot which showed the data 
 
+In my HW2 I represented my personal data using a boxplot which was a statistical way to summarize the distribution of my step count across the days of the week. In my second representation I used an affective visualization which took a more experiential approach that showed the viewers the rise and fall of physical activity and told more of a story. 
 
-What similarities do you see between all your visualizations?
-What patterns (e.g. differences in means/counts/proportions/medians, trends through time, relationships between variables) do you see in each visualization? Are these different between visualizations? If so, why? If not, why not?
-What kinds of feedback did you get during week 9 in workshop or from the instructors? How did you implement or try those suggestions? If you tried and kept those suggestions, explain how and why; if not, explain why not.
+The visuals are similar because they both used the same quantitative data and represented the same trend over time. They both also aimed to show a pattern of activity over time and how it can vary day to day. 
 
+In my first visualization my sample size was much smaller and so the median difference between days was much greater than when I used the data the second time with a larger sample size. Overall, I saw I trend of highest average step count on Saturday and just behind that was Tuesday, with very little variability in steps between Monday, Wednesday, Thursday and Friday. 
 
+I do think that there are some differences between visualizations as stated above becuase my sample size increased for the second one which made the step counts much less variable becuase there were less outliers. 
 
+In my first visualization I accidentally mixed up the x and y axis and put the steps as the predictor which does not make sense and so I fixed that for my affective visualization. I kept and changed my visualizations based on this feedback becuase my original predictor and response variable were incorrect and so switching those made my visualization much more accurate in describing why my step count varied over different days.
 
 
 
