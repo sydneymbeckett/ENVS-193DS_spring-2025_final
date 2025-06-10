@@ -269,7 +269,7 @@ theme(
 **i)**
 Figure 1: Swift Parrot Nest Box Occupancy Declines with Increasing Distance from Forest Edge, Varying by Year
 This figure displays observed nest box occupancy by Swift Parrots(green points) and predicted occupancy probabilities(lines with shaded 95% confidence interval) as a function of distance from the forest edge. Data are grouped by year(2016 and 2019), with different colors to differentiate predictions for each year. The model suggests that the further the nest box from the edge of the forest, the less likely a Swift Parrot will be occupying the nest box.
-Data source: https://doi.org/10.5061/dryad.83bk3j9sb 
+Stojanovic, Dejan et al. (2021). Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird [Dataset]. Dryad. https://doi.org/10.5061/dryad.83bk3j9sb
 
 **j)**
 ```{r}
