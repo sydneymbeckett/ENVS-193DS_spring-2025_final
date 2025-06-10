@@ -68,9 +68,11 @@ str(sst_clean) #show structure
 ```
 
 **b)**
+
 ```{r}
 
-sst_clean$year <- as.numeric(as.character(sst_clean$year)) #making sure the year is numeric
+sst_clean$year <- as.factor(sst_clean$year)
+str(sst_clean$year) #setting year as a factor
 
 sst_clean <- sst_clean |> #making sure that month is in the corrent order
   mutate(month = factor(month, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec")))
@@ -87,9 +89,9 @@ sst_plot <- ggplot(data = sst_clean, #using the sst clean data
   geom_point() +
   # second layer: line
   geom_line() +
-  scale_color_gradient(low = "lightblue", high = "black") + #creating a color gradient
+  scale_color_brewer(palette = "Blues") + #creating a color gradient(this worked better because it left the legend the same as the one in the final directions)
   # labels
-  labs(x = "Month", #x acis title
+  labs(x = "Month", #x axis title
        y = "Mean monthly sea surface temperature(°C)", #y axis title
        color = "Year") +
   theme_minimal(base_size = 12) + #text font size
@@ -109,8 +111,10 @@ sst_plot <- ggplot(data = sst_clean, #using the sst clean data
 # display the plot
 sst_plot
 
-STILL NEED TO FIX THE LEGEND
 ```
+
+
+
 
 ## Problem 3.
 
