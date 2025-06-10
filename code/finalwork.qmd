@@ -14,7 +14,7 @@ library(here) # file organization
 library(gt) # creating summary tables
 library(flextable) # creating summary tables
 library(janitor) # cleaning data frames
-library(lubridate)
+library(lubridate) 
 library(ggplot2)
 library(DHARMa)
 library(MuMIn)
