@@ -19,4 +19,4 @@ ENVS-193DS_spring-2025_final
 
 Rendered output
 
-https://github.com/sydneymbeckett/ENVS-193DS_spring-2025_final.git 
+https://sydneymbeckett.github.io/ENVS-193DS_spring-2025_final/code/finalwork.html 
