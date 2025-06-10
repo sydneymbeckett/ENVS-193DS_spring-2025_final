@@ -7,10 +7,14 @@ Saleh, Dina and Joseph Domagalski. 2021. “Concentrations, Loads, and Associate
 And the paper referred to in Problem 3 is:
 Stojanovic, Dejan et al. (2021). Do nest boxes breed the target species or its competitors? A case study of a critically endangered bird [Dataset]. Dryad. https://doi.org/10.5061/dryad.83bk3j9sb
 
-Data and file overview
+Data and file overview:
+
 Code = Includes the finalwork.qmd which is my code for the project
+
 Data = Includes both SST data and Nest Box data.
+
 ReadME = Information about the code
+
 ENVS-193DS_spring-2025_final
 
 Rendered output
