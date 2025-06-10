@@ -1,7 +1,13 @@
 ---
 title: "Final"
 author: "Sydney Beckett"
-format: html
+date: "June 10 2025"
+format:
+  html:
+    toc: true # use this to display a table of contents
+execute:
+  message: false # use this to make sure messages don't show up
+  warning: false # use this to make sure warnings don't show up
 ---
 
 https://github.com/sydneymbeckett/ENVS-193DS_spring-2025_final.git 
@@ -35,11 +41,11 @@ Other information that would be helpful would be the sample size which would hel
 
 **c)**
 Part 1: 
-The test resulted in a rejection of the null hypothesis which stated that there is no correlation between distance from headwater (km) and annual total nitrogen load (kg year-1). The relationship was evaluated using Pearsons correlation test(r=correlation coefficient, p=0.03, α = significance level, n=sample size).
+The test resulted in a rejection of the null hypothesis indicating a significant correlation between distance from headwater (km) and annual total nitrogen load (kg year-1). The relationship was evaluated using Pearsons correlation test(r=correlation coefficient, p=0.03, α = significance level, n=sample size). This suggests that as water flows downstream, nitrogen concentrations change.
 
 Part 2: 
 
-We rejected the null hypothesis that there is no difference in average nitrogen load (kg year-1) between sources (urban land, atmospheric deposition, fertilizer, waste water treatment, and grasslands). This was determined using a one-way ANOVA(F= F-statistic, p=0.02, α=significance level, df=degrees of freedom, SS=sum of squares, n=sample size).
+We rejected the null hypothesis that there is no difference in average nitrogen load (kg year-1) between sources (urban land, atmospheric deposition, fertilizer, waste water treatment, and grasslands). This finding indicates that certain land uses or sources contribute more nitrogen to the watershed than others, which can have important implications for nutrient management. This was determined using a one-way ANOVA(F= F-statistic, p=0.02, α=significance level, df=degrees of freedom, SS=sum of squares, n=sample size).
 
 ## Problem 2.
 
@@ -76,8 +82,6 @@ str(sst_clean$year) #setting year as a factor
 
 sst_clean <- sst_clean |> #making sure that month is in the corrent order
   mutate(month = factor(month, levels = c("Jan", "Feb", "Mar", "Apr", "May", "Jun","Jul", "Aug", "Sep", "Oct", "Nov", "Dec")))
-#creating a gradient color scale 
-year_colors <- scale_color_gradient(low = "lightblue", high = "black")
                # base layer: ggplot
 sst_plot <- ggplot(data = sst_clean, #using the sst clean data
                       # aesthetics: x-axis, y-axis, and color
@@ -89,7 +93,7 @@ sst_plot <- ggplot(data = sst_clean, #using the sst clean data
   geom_point() +
   # second layer: line
   geom_line() +
-  scale_color_brewer(palette = "Blues") + #creating a color gradient(this worked better because it left the legend the same as the one in the final directions)
+  scale_color_brewer(palette = "Blues") + #creating a color gradient(this worked better because it left the legend the same as the one in the final directions) 
   # labels
   labs(x = "Month", #x axis title
        y = "Mean monthly sea surface temperature(°C)", #y axis title
@@ -103,7 +107,7 @@ sst_plot <- ggplot(data = sst_clean, #using the sst clean data
     
     legend.position = c(0.15, 0.75),  # move legend to top left
     legend.background = element_rect(fill = "white", color = NA), #no legend border
-    panel.border = element_rect(color = "grey", fill = NA, linewidth = 0.5), #creating border
+    panel.border = element_rect(color = "black", fill = NA, linewidth = 0.5), #creating border
     panel.grid.major = element_blank(), #removing major grid lines
     panel.grid.minor = element_blank() #removing minor grid lines
   )
@@ -119,7 +123,7 @@ sst_plot
 ## Problem 3.
 
 **a)**
-The 1s and 0s refer to occupancy of the nest boxes. With the 1 referring to occupancy and 0 referring to no occupancy in the nest box.
+The 1s and 0s refer to Swift Parrot occupancy of the nest boxes. With the 1 referring to occupancy and 0 referring to no occupancy in the nest box.
 
 **b)**
 The main difference between the species is that the Swift Parrots are a native and threatened species. The Tree Martins are also native but are nest competitors with the Swift Parrots, and then Common Starlings are an invasive species. 
@@ -134,7 +138,8 @@ The two seasons compared in the study are 2016 and 2019 which are breeding seaso
 | 0            |No      |No                       |no predictors(null model)                      |
 | 1            |Yes     |Yes                      |all predictors(saturated model)               |
 | 2            |Yes     |No                       |GLM:Predictor variable=season                  |
-| 3            |No      |Yes                      |GLM:Predictor variable=distance to forest edge |   
+| 3            |No      |Yes                      |GLM:Predictor variable=distance to forest edge | 
+
 **e)**
 
 ```{r}
@@ -150,28 +155,28 @@ nest_boxes_clean <- nest_boxes |>
 model0 <- glm( #using GLM
   sp ~ 1, # formula, null so using no predictor
   data = nest_boxes_clean, # data frame
-  family = binomial 
+  family = binomial#fit to a generalized linear model due to binary response variable
 )
 
 # model 1: all predictors/saturated
 model1 <- glm(
   sp ~ season * edge_distance, # formula using season and edge distance as predictors
   data = nest_boxes_clean, # data frame
-  family = binomial
+  family = binomial #fit to a generalized linear model due to binary response variable
 )
 
 # model 2: season
 model2 <- glm(
   sp ~ season, # formula using season as predictor
   data = nest_boxes_clean, #data frame
-  family = binomial
+  family = binomial#fit to a generalized linear model due to binary response variable
 )
 
 # model 3: distance to forest edge
 model3 <- glm(
   sp ~ edge_distance, # formula using edge distance as predictor
   data = nest_boxes_clean, #data frame
-  family = binomial
+  family = binomial#fit to a generalized linear model due to binary response variable
 )
 
 ```
@@ -262,19 +267,20 @@ theme(
 ```
 
 **i)**
-Figure 1: Swift Parrot Nest Box Occupancy Predictions According to Edge Distance and Year
+Figure 1: Swift Parrot Nest Box Occupancy Declines with Increasing Distance from Forest Edge, Varying by Year
 This figure displays observed nest box occupancy by Swift Parrots(green points) and predicted occupancy probabilities(lines with shaded 95% confidence interval) as a function of distance from the forest edge. Data are grouped by year(2016 and 2019), with different colors to differentiate predictions for each year. The model suggests that the further the nest box from the edge of the forest, the less likely a Swift Parrot will be occupying the nest box.
-Data: https://doi.org/10.5061/dryad.83bk3j9sb 
+Data source: https://doi.org/10.5061/dryad.83bk3j9sb 
 
 **j)**
 ```{r}
 predictions <- ggpredict(model1, #the predictions function saves the output for later use
-          terms = c("edge_distance [0,900]", "season")) 
-print(predictions)
+          terms = c("edge_distance [0,900]", "season")) #using this function allows you to look at predictions together and with seasons
+print(predictions) #print the predictions
 ```
 
+
 **k)**
-In 2016, the predicted probability of Swift Parrot nest box occupancy at the forest edge(0m) was 0.54((95% CI [0.36, 0.72])), whereas it dropped significantly to 0.09 (95% CI [0.04, 0.22]) at 900 m from the edge. In 2019 the occupancy was overall lower, with a probability of 0.24 (95% CI [0.13, 0.42]) at the edge and the same low probability of 0.09 (95% CI [0.03, 0.23]) at 900 m. As shown in Figure 1, Swift Parrots were more likely to occupy nest boxes closer to the forest edge, especially when they were first implemented in 2016, showing a strong negative relationship between edge distance and occupancy. This trend is explained by the fat that the Swift Parrots two competitors occupy nest boxes both near and far the edge of the forest. The Common Starling more frequently occupied boxes closer to the edge of the forest and the Tree Martin occupied boxes farther particularly in 2019, which creates widespread competition for the Swift Parrot.
+In 2016, the predicted probability of Swift Parrot nest box occupancy at the forest edge(0m) was 0.54((95% CI [0.36, 0.72])), whereas it dropped significantly to 0.09 (95% CI [0.04, 0.22]) at 900 m from the edge. In 2019 the occupancy was overall lower, with a probability of 0.24 (95% CI [0.13, 0.42]) at the edge and the same low probability of 0.09 (95% CI [0.03, 0.23]) at 900 m. As shown in Figure 1, Swift Parrots were more likely to occupy nest boxes closer to the forest edge, especially when they were first implemented in 2016, showing a strong negative relationship between edge distance and occupancy. This pattern may be influenced by competition, Common Starlings tend to occupy boxes near the forest edge, while Tree Martins occupy those farther away, particularly in 2019. The presence of these competitors likely contributes to the overall lower occupancy by Swift Parrots and affects patterns of nest box use.
 
 ## Problem 4. 
 
