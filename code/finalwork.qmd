@@ -25,9 +25,12 @@ library(ggplot2)
 library(DHARMa)
 library(MuMIn)
 library(ggeffects)
-sst <- read_csv("data/SST_update2023.csv") #reading in SST data
-nest_boxes <- read_csv("data/occdist.csv") #reading in nest data
+sst <- read_csv(here("data", "SST_update2023.csv"))
+nest_boxes <- read_csv(here("data", "occdist.csv"))
+
 ```
+
+
 
 ## Problem 1.
 
