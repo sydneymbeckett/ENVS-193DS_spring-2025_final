@@ -13,7 +13,6 @@ execute:
 https://github.com/sydneymbeckett/ENVS-193DS_spring-2025_final.git 
 
 
-
 ```{r message= FALSE, warning=FALSE}
 library(tidyverse) # general use
 library(here) # file organization
@@ -36,19 +35,20 @@ nest_boxes <- read_csv(here("data", "occdist.csv")) #reading in nest data
 
 **a)**
 
-In part 1 they likely used a Pearsons correlation test because they were comparing two continuous variables to test for presence of correlation.
+In part 1 they likely used a simple linear regression because they were comparing two continuous variables, the p value likely tested if there was a significant linear relationship between the two variables.
 In part 2 they likely used a one-way ANOVA because they were comparing one continuous variable "between sources", which is more than 2 groups.
 
 **b)**
-Other information that would be helpful would be the sample size which would help reproducibility, statistical power(aka if the sample size is small then the results might not be as powerful) and reliability if there were outliers(small sample size would highly impacted by one outlier). And given they used a one-way ANOVA, another piece of information that would be helpful would be the F-value which represents the ratio of between group variance to within group variance. Essentially a larger F-value means the group means differ more relative to the variation within groups. 
+Other information that would be helpful would be the Post-HOC test which would quantify which groups actually differ from eachother in nitrogen load. And given they used a one-way ANOVA, another piece of information that would be helpful would be the F-value which represents the ratio of between group variance to within group variance. Essentially a larger F-value means the group means differ more relative to the variation within groups. 
 
 **c)**
-Part 1: 
-The test resulted in a rejection of the null hypothesis indicating a significant correlation between distance from headwater (km) and annual total nitrogen load (kg year-1). The relationship was evaluated using Pearsons correlation test(r=correlation coefficient, p=0.03, α = significance level, n=sample size). This suggests that as water flows downstream, nitrogen concentrations change.
+Part 1:
+
+The test resulted in a rejection of the null hypothesis indicating a significant correlation between distance from headwater (km) and annual total nitrogen load (kg year-1). The relationship was evaluated using simple linear regression(test statistic, df= degrees of freedom, p=0.03, α = significance level, n=sample size). This suggests that sites farther from the headwater tended to have higher total nitrogen load.
 
 Part 2: 
 
-We rejected the null hypothesis that there is no difference in average nitrogen load (kg year-1) between sources (urban land, atmospheric deposition, fertilizer, waste water treatment, and grasslands). This finding indicates that certain land uses or sources contribute more nitrogen to the watershed than others, which can have important implications for nutrient management. This was determined using a one-way ANOVA(F= F-statistic, p=0.02, α=significance level, df=degrees of freedom, SS=sum of squares, n=sample size).
+We rejected the null hypothesis that there is no difference in average nitrogen load (kg year-1) between sources (urban land, atmospheric deposition, fertilizer, waste water treatment, and grasslands). This finding indicates that certain land uses or sources contribute more nitrogen to the watershed than others, which can have important implications for nutrient management. This was determined using a one-way ANOVA(F= F-statistic, p=0.02, α=significance level, df=degrees of freedom, SS=sum of squares, n=sample size). The Post-HOC test would allow us to understand which sources are contributing most and least nitrogen. 
 
 ## Problem 2.
 
@@ -129,7 +129,7 @@ sst_plot
 The 1s and 0s refer to Swift Parrot occupancy of the nest boxes. With the 1 referring to occupancy and 0 referring to no occupancy in the nest box.
 
 **b)**
-The main difference between the species is that the Swift Parrots are a native and threatened species. The Tree Martins are also native but are nest competitors with the Swift Parrots, and then Common Starlings are an invasive species. 
+The main difference between the species is that the Swift Parrots are a native and threatened species. The Tree Martins are also native but are nest competitors with the Swift Parrots, and then Common Starlings are an invasive species and nest competitors. 
 
 **c)**
 The two seasons compared in the study are 2016 and 2019 which are breeding seasons for the Swift Parrots. They differ because in 2016 the nest boxes had been newly put in, while in 2019 the boxes were established and they could determine how the nest boxes were actually being used and by what species.
@@ -257,8 +257,8 @@ geom_line(data = mod_preds,
   scale_y_continuous(name = "Swift Parrot Nest Box Occupancy", #y axis label
     limits = c(0,1), breaks = c(0,1)) +
   scale_x_continuous(name = "Distance from Forest Edge(meters)") + #x axis label
-  scale_fill_manual(values = c("2016" = "#D55E00", "2019" = "#0072B2")) + #manually changing fill color
-scale_color_manual(values = c("2016" = "#D55E00", "2019" = "#0072B2"))+ #manually changing line color
+  scale_fill_manual(values = c("2016" = "lightblue", "2019" = "pink")) + #manually changing fill color
+scale_color_manual(values = c("2016" = "lightblue", "2019" = "pink"))+ #manually changing line color
 theme(
   panel.grid = element_blank(), #remove all grid lines
   axis.title = element_text(size = 12), #clearer axis labels
@@ -283,7 +283,7 @@ print(predictions) #print the predictions
 
 
 **k)**
-In 2016, the predicted probability of Swift Parrot nest box occupancy at the forest edge(0m) was 0.54((95% CI [0.36, 0.72])), whereas it dropped significantly to 0.09 (95% CI [0.04, 0.22]) at 900 m from the edge. In 2019 the occupancy was overall lower, with a probability of 0.24 (95% CI [0.13, 0.42]) at the edge and the same low probability of 0.09 (95% CI [0.03, 0.23]) at 900 m. As shown in Figure 1, Swift Parrots were more likely to occupy nest boxes closer to the forest edge, especially when they were first implemented in 2016, showing a strong negative relationship between edge distance and occupancy. This pattern may be influenced by competition, Common Starlings tend to occupy boxes near the forest edge, while Tree Martins occupy those farther away, particularly in 2019. The presence of these competitors likely contributes to the overall lower occupancy by Swift Parrots and affects patterns of nest box use.
+In 2016, the predicted probability of Swift Parrot nest box occupancy at the forest edge(0m) was 0.54((95% CI [0.36, 0.72])), whereas it dropped significantly to 0.09 (95% CI [0.04, 0.22]) at 900 m from the edge. In 2019 the occupancy was overall lower, with a probability of 0.24 (95% CI [0.13, 0.42]) at the edge and the same low probability of 0.09 (95% CI [0.03, 0.23]) at 900 m. As shown in Figure 1, Swift Parrots were more likely to occupy nest boxes closer to the forest edge, especially when they were first implemented in 2016, showing a strong negative relationship between edge distance and occupancy. This pattern may be influenced by competition, Common Starlings tend to occupy boxes near the forest edge, while Tree Martins occupy those farther away, particularly in 2019. This shows an opposing relationship between Swift Parrots and Common Starlings due to their different nest box habits. The presence of these competitors likely contributes to the overall lower occupancy by Swift Parrots due to the widespread competition from 2016-2019 which affects patterns of nest box use.
 
 ## Problem 4. 
 
