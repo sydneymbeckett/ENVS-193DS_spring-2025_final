@@ -10,7 +10,7 @@ Stojanovic, Dejan et al. (2021). Do nest boxes breed the target species or its c
 Data and file overview
 Code = Includes the finalwork.qmd which is my code for the project
 Data = Includes both SST data and Nest Box data.
-
+ReadME = Information about the code
 ENVS-193DS_spring-2025_final
 
 Rendered output
